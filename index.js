@@ -3,7 +3,7 @@ import clientRoutes from "./routes/clients.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-const variables = dotenv.config();
+dotenv.config();
 const app = express();  // express app initialization
 const PORT = process.env.PORT || 8080;
 

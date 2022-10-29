@@ -28,7 +28,7 @@ export const createClient = (req, res) => {
 export const deleteClient = (req, res) => {
     const { id } = req.params;
     ClientSchema
-        .remove({_id: id})
+        .deleteOne({_id: id})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
 };
