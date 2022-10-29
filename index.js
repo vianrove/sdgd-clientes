@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import clientRoutes from "./routes/clients.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
