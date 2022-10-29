@@ -6,7 +6,7 @@ const ClientSchema = Schema({
     firstName: String, required: true,
     lastName: String, required: true,
     age: Number, required: true,
-    email: String, required: true,
+    email: {type: String, required: true, unique: true},
     password: String, required: true,
     contactNumber: Number, required: false,
 })
