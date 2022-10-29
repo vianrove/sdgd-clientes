@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema
 
 const ClientSchema = Schema({
-    uid: String, required: true,
     firstName: String, required: true,
     lastName: String, required: true,
     age: Number, required: true,
