@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-// all routes here start with /clients
+// all routes here start with /clients  ex: /clients/getClient
 router.get('/', getClients)
 
 router.post('/', createClient);
@@ -18,6 +18,6 @@ router.get('/:id', getClient);
 
 router.delete('/:id', deleteClient);
 
-router.patch('/:id', updateClient);
+router.put('/:id', updateClient);
 
 export default router;

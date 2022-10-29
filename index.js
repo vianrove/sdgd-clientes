@@ -5,12 +5,12 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 const variables = dotenv.config();
-const app = express();
+const app = express();  // express app initialization
 const PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.json());
+app.use(express.json());  // use json parser
 
-app.use('/clients', clientRoutes);
+app.use('/clients', clientRoutes);  // every client route begins with '/clients'
 
 app.listen(
     PORT,

@@ -1,47 +1,60 @@
-import { v4 as uuidv4 } from 'uuid';
-
-let clients = []
+import ClientSchema from '../models/client.js';
 
 export const getClients = (req, res) => {
-    res.send(clients);
+    ClientSchema
+        .find()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
 export const getClient = (req, res) => {
     const { id } = req.params;
-
-    const clientFound = clients.find((client) => client.id === id);
-
-    res.send(clientFound);
+    ClientSchema
+        .findOne({_id: id})
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
 export const createClient = (req, res) => {
 
-    const client = req.body;
-
-    const clientWithId = { ...client, id: uuidv4() };
-
-    clients.push(clientWithId);
-    res.send(`${clientWithId.firstName} was added to the database`);
+    const client = ClientSchema(req.body);
+    
+    client
+        .save()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
 export const deleteClient = (req, res) => {
     const { id } = req.params;
-
-    clients = clients.filter((client) => client.id != id);
-
-    res.send(`${id} was deleted successfully`);
+    ClientSchema
+        .remove({_id: id})
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
 
 export const updateClient = (req, res) => {
     const { id } = req.params;
-
-    const { firstName, lastName, age } = req.body;
-
-    const clientToUpdate = clients.find(client => client.id == id);
-
-    if(firstName) clientToUpdate.firstName = firstName;
-    if(lastName) clientToUpdate.lastName = lastName;
-    if(age) clientToUpdate.age = age;
+    const {
+        firstName,
+        lastName,
+        age,
+        email,
+        password,
+        contactNumber
+    } = req.body;
     
-    res.send(`User ${id} updated successfully`)
+    ClientSchema
+        .updateOne(
+            {_id: id}, 
+            { $set: {
+                firstName,
+                lastName,
+                age,
+                email,
+                password,
+                contactNumber                
+            }})
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error}))
 };
