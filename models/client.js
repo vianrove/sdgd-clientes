@@ -8,7 +8,7 @@ const ClientSchema = Schema({
     age: Number, required: true,
     email: {type: String, required: true, unique: true},
     password: String, required: true,
-    contactNumber: Number, required: false,
+    contactNumber: Number, required: false
 })
 
 export default mongoose.model('Client', ClientSchema)

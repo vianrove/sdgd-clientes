@@ -1,3 +1,4 @@
+import axios from 'axios';
 import ClientSchema from '../models/client.js';
 
 export const getClients = (req, res) => {
@@ -18,11 +19,25 @@ export const getClient = (req, res) => {
 export const createClient = (req, res) => {
 
     const client = ClientSchema(req.body);
-    
+
     client
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
+    ;
+    
+    // After creating the client, we assign a subscription
+
+    const url = 'https://sdgd-facturacion.herokuapp.com/subscriptions';
+    const  data = {
+        _id: client._id,
+        subStatus: false
+    }
+    // Create a new subscription in a different schema
+    axios
+        .post(url,data)
+        .then(console.log("Subscription assigned successfully"))
+        .catch((error) => {console.log(error)})
 };
 
 export const deleteClient = (req, res) => {
