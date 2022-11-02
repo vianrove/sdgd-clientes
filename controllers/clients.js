@@ -1,5 +1,7 @@
 import axios from 'axios';
 import ClientSchema from '../models/client.js';
+import assignSubscription from '../helpers/assignSubscription.js';
+import deleteSubscription from '../helpers/deleteSusbcription.js';
 
 export const getClients = (req, res) => {
     ClientSchema
@@ -27,17 +29,7 @@ export const createClient = (req, res) => {
     ;
     
     // After creating the client, we assign a subscription
-
-    const url = 'https://sdgd-facturacion.herokuapp.com/subscriptions';
-    const  data = {
-        _id: client._id,
-        subStatus: false
-    }
-    // Create a new subscription in a different schema
-    axios
-        .post(url,data)
-        .then(console.log("Subscription assigned successfully"))
-        .catch((error) => {console.log(error)})
+    assignSubscription(id);
 };
 
 export const deleteClient = (req, res) => {
@@ -46,6 +38,9 @@ export const deleteClient = (req, res) => {
         .deleteOne({_id: id})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error}))
+
+    // After deleting a client, delete assigned subscription
+    deleteSubscription(id);
 };
 
 export const updateClient = (req, res) => {
