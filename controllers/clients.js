@@ -1,4 +1,3 @@
-import axios from 'axios';
 import ClientSchema from '../models/client.js';
 import assignSubscription from '../helpers/assignSubscription.js';
 import deleteSubscription from '../helpers/deleteSusbcription.js';
@@ -29,7 +28,7 @@ export const createClient = (req, res) => {
     ;
     
     // After creating the client, we assign a subscription
-    assignSubscription(id);
+    assignSubscription(client._id);
 };
 
 export const deleteClient = (req, res) => {
