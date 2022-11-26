@@ -8,9 +8,9 @@ dotenv.config();
 const app = express();  // express app initialization
 const PORT = process.env.PORT || 8080;
 app.use(express.json());  // use json parser
+app.use(cors());
 
 app.use('/clients', clientRoutes);  // every client route begins with '/clients'
-app.use(cors());
 
 app.listen(
     PORT,
