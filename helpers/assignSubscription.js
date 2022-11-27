@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const assignSubscription = (id) => {
-    const url = 'https://sdgd-facturacion.herokuapp.com/subscriptions';
+    const url = 'https://sdgd-facturacion.onrender.com/subscriptions';
     const  data = {
         _id: id,
         subStatus: false
