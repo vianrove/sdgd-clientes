@@ -12,10 +12,10 @@ app.use(cors());
 
 app.use('/clients', clientRoutes);  // every client route begins with '/clients'
 
-app.listen(
-    PORT,
-    () => console.log(`API live on port http://localhost:${PORT}`)
-)
+// app.listen(
+//     PORT,
+//     () => console.log(`API live on port http://localhost:${PORT}`)
+// )
 
 app.get('/', (req, res) => res.send('Hello from my api homepage'));
 
@@ -23,5 +23,7 @@ app.get('/', (req, res) => res.send('Hello from my api homepage'));
 mongoose.set("strictQuery", false);
 mongoose
     .connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to Mongo'))
+    .then(() => {
+        app.listen(PORT,() => console.log(`API live on port http://localhost:${PORT}`));
+        console.log('Connected to Mongo')})
     .catch((error) => console.error(error));
