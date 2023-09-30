@@ -20,6 +20,7 @@ app.listen(
 app.get('/', (req, res) => res.send('Hello from my api homepage'));
 
 // mongodb connection
+mongoose.set("strictQuery", false);
 mongoose
     .connect(process.env.MONGODB_URI)
     .then(() => console.log('Connected to Mongo'))
