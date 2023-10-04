@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const deleteSubscription = (id) => {
-    const url = `https://sdgd-facturacion.onrender.com/subscriptions/${id}`;
+    const url = `https://sdgd-pasarela.onrender.com/subscriptions/${id}`;
     
     // Delete assigned subscription
     axios
