@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const assignSubscription = (id) => {
-    const url = 'https://sdgd-pasarela.onrender.com/subscriptions';
+    const url = process.env.PASARELA_API_URL;
     const  data = {
         _id: id,
         subStatus: false

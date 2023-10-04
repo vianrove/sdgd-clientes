@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const deleteSubscription = (id) => {
-    const url = `https://sdgd-pasarela.onrender.com/subscriptions/${id}`;
+    const url = `${process.env.PASARELA_API_URL}${id}`;
     
     // Delete assigned subscription
     axios
