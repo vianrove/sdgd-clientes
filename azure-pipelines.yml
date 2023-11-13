@@ -17,7 +17,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Docker Hub'
-        repository: 'vianrove/utbapp'
+        repository: 'vianrove/clientes'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
