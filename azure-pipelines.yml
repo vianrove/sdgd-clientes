@@ -4,9 +4,6 @@ trigger:
 pool:
   name: Default
 
-variables:
-  tag: '$(Build.BuildId)'
-
 steps:
 - task: Docker@2
   displayName: Build and push an image to Docker Hub
@@ -17,4 +14,4 @@ steps:
     buildContext: .
     containerRegistry: 'Docker Hub'
     tags: |
-      $(tag)
+      latest
