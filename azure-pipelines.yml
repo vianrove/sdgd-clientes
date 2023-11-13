@@ -26,3 +26,28 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
+
+- stage: Provision
+  displayName: 'Updating infrastructure on Azure'
+  dependsOn: Build
+  jobs:
+    - job : provision
+      displayName: 'Prosivion resource'
+      pool:
+        name: Default
+      variables: # vars from azure devOps in library
+      - group: ARM
+      steps:
+        - script: |
+            set -e 
+
+            terraform init -input=false
+            terraform apply -input=false -auto-approve
+          name: 'RunTerraform'
+          displayName: 'Run Terraform'
+          env: # these vars are being passed from the variable library that we specified in Azure DevOps
+            ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+            ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+            ARM_TENANT_ID: $(ARM_TENANT_ID)
+            ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+            TF_VAR_imagebuild: $(tag)

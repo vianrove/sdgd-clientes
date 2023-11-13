@@ -124,6 +124,12 @@ resource "azurerm_service_plan" "res-41" {
     azurerm_resource_group.res-0,
   ]
 }
+
+variable "imagebuild" {
+  type = string
+  description = "the latest image build version"
+}
+
 ### Clientes api (docker)
 resource "azurerm_linux_web_app" "res-42" {
   app_settings = {
@@ -141,7 +147,7 @@ resource "azurerm_linux_web_app" "res-42" {
   }
   site_config {
     application_stack {
-      docker_image_name = "vianrove/api-clientes:1.2"
+      docker_image_name = "vianrove/api-clientes:${var.imagebuild}"
       docker_registry_url = "https://index.docker.io"
     }
     always_on  = false
@@ -181,7 +187,7 @@ resource "azurerm_linux_web_app" "res-47" {
   }
   site_config {
     application_stack {
-      docker_image_name = "vianrove/api-clientes:1.2"
+      docker_image_name = "vianrove/api-clientes:${var.imagebuild}"
       docker_registry_url = "https://index.docker.io"
     }
     always_on  = false
