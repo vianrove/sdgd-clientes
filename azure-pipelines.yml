@@ -39,10 +39,10 @@ stages:
       - group: ARM
       steps:
         - script: |
+            cd terraform/
             set -e 
-
             terraform init -input=false
-            terraform apply -input=false -auto-approve
+            terraform apply -target="module.appserviceclientes" -input=false -auto-approve
           name: 'RunTerraform'
           displayName: 'Run Terraform'
           env: # these vars are being passed from the variable library that we specified in Azure DevOps
