@@ -17,7 +17,7 @@ app.use('/clients', clientRoutes);  // every client route begins with '/clients'
 //     () => console.log(`API live on port http://localhost:${PORT}`)
 // )
 
-app.get('/', (req, res) => res.send('Hello from my api homepage'));
+app.get('/', (req, res) => res.send('Hello from the clients API homepage'));
 
 // mongodb connection
 mongoose.set("strictQuery", false);
